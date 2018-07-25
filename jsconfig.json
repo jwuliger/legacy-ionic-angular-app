@@ -2,6 +2,9 @@
 	"exclude": [
 		"node_modules",
 		"plugins",
-		"platforms"
+		"platforms",
+		"bld",
+		"bin",
+		"www/lib"
 	]
 }

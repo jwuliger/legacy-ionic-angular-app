@@ -5,10 +5,10 @@
 		.module("app.core")
 		.factory("supporterService", supporterService);
 
-	supporterService.$inject = ["$timeout", "$state", "$rootScope", "$q", "$ionicPopup", "$firebaseArray", "$firebaseObject", "cordovaToast", "fbDataRef", "authService", "geoService", "openModalService", "getClientIp"];
+	supporterService.$inject = ["$timeout", "$state", "$rootScope", "$q", "$ionicPopup", "$firebaseArray", "$firebaseObject", "cordovaToast", "fbDataRef", "authService", "openModalService", "getClientIp"]; // "geoService",
 
 	/* @ngInject */
-	function supporterService($timeout, $state, $rootScope, $q, $ionicPopup, $firebaseArray, $firebaseObject, cordovaToast, fbDataRef, authService, geoService, openModalService, getClientIp) {
+	function supporterService($timeout, $state, $rootScope, $q, $ionicPopup, $firebaseArray, $firebaseObject, cordovaToast, fbDataRef, authService, openModalService, getClientIp) { //geoService
 
 		var service = {
 			getSupportersBySupportedUserId: getSupportersBySupportedUserId,

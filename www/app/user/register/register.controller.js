@@ -7,10 +7,10 @@
 		.module("app.user")
 		.controller("RegisterController", RegisterController);
 
-	RegisterController.$inject = ["$state", "$http", "$scope", "$ionicNativeTransitions", "$ionicHistory", "Codes", "fbAuth", "fbUtilities", "authService", "loaderService", "geoService", "getClientIp", "logger", "NativeDeviceStorage"];
+	RegisterController.$inject = ["$state", "$http", "$scope", "$ionicNativeTransitions", "$ionicHistory", "Codes", "fbAuth", "fbUtilities", "authService", "loaderService", "getClientIp", "logger", "NativeDeviceStorage"]; // "geoService", 
 
 	/* @ngInject */
-	function RegisterController($state, $http, $scope, $ionicNativeTransitions, $ionicHistory, Codes, fbAuth, fbUtilities, authService, loaderService, geoService, getClientIp, logger, NativeDeviceStorage) {
+	function RegisterController($state, $http, $scope, $ionicNativeTransitions, $ionicHistory, Codes, fbAuth, fbUtilities, authService, loaderService, getClientIp, logger, NativeDeviceStorage) { // geoService
 		var vm = this;
 
 		var _timeStamp = authService.fbTimeStamp();

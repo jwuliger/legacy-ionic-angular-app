@@ -5,10 +5,10 @@
 		.module("app.core")
 		.service("authService", authService);
 
-	authService.$inject = ["$q", "$ionicHistory", "$cordovaOauth", "$twitterApi", "$timeout", "$state", "fbAuth", "fbDataRef", "geoService", "getClientIp", "fbUtilities", "loaderService", "userDataLocalStorageKey", "Codes", "NativeDeviceStorage"];
+	authService.$inject = ["$q", "$ionicHistory", "$cordovaOauth", "$twitterApi", "$timeout", "$state", "fbAuth", "fbDataRef", "getClientIp", "fbUtilities", "loaderService", "userDataLocalStorageKey", "Codes", "NativeDeviceStorage"]; // "geoService", 
 
 	/* @ngInject */
-	function authService($q, $ionicHistory, $cordovaOauth, $twitterApi, $timeout, $state, fbAuth, fbDataRef, geoService, getClientIp, fbUtilities, loaderService, userDataLocalStorageKey, Codes, NativeDeviceStorage) {
+	function authService($q, $ionicHistory, $cordovaOauth, $twitterApi, $timeout, $state, fbAuth, fbDataRef, getClientIp, fbUtilities, loaderService, userDataLocalStorageKey, Codes, NativeDeviceStorage) { // geoService
 
 		// globals
 		var _timeStamp = fbTimeStamp();
