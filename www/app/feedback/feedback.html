@@ -1,0 +1,62 @@
+<ion-view view-title="Your Feedback">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">Your input is very important!</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content style="margin: 0; padding: 5px;">
+				<!--
+				This is a hack to md-tabs:
+				I had to seperate the tab content
+				from the parent directive due to the transition
+				animation's poor performance on mobile devices
+				-->
+				<md-tabs id="tabs-transparent" md-dynamic-height md-border-bottom md-stretch-tabs="always" md-center-tabs="true" md-selected="selectedIndex">
+					<md-tab label="Your Feedback"></md-tab>
+					<md-tab label="Report Bug"></md-tab>
+				</md-tabs>
+				<md-content name="Your Feedback" class="md-padding tabs-transparent" layout="column" layout-align="center center" ng-show="selectedIndex == 0">
+					<h3 style="margin-top: 10px;">Please tell us what you think.</h3>
+					<form name="vm.feedbackForm" ng-submit="vm.submit()" layout="column" style="width: 100%;">
+						<h4 style="margin-bottom: -10px;">What's your info?</h4>
+						<div layout="row" layout-xs="column" flex="auto">
+							<md-input-container flex="auto" style="margin-bottom: -5px;">
+								<label>Name</label>
+								<input type="text" ng-model="vm.messageData.name">
+							</md-input-container>
+							<md-input-container flex="auto">
+								<label>Email (required)</label>
+								<input name="email" type="email" ng-model="vm.messageData.email" required ng-pattern="/^.+@.+\..+$/">
+								<div ng-messages="vm.feedbackForm.email.$error" role="alert">
+									<div ng-message-exp="['required', 'pattern']">
+										Please enter a valid email address.
+									</div>
+								</div>
+							</md-input-container>
+						</div>
+						<h4 style="margin-bottom: -10px;">Good or bad, let us know!</h4>
+						<md-input-container flex="auto">
+							<label>Enter a message (required)</label>
+							<textarea name="message" ng-model="vm.messageData.message" md-maxlength="500" required></textarea>
+							<div ng-messages="vm.feedbackForm.message.$error">
+								<div ng-message="required">Please enter a message.</div>
+								<div ng-message="md-maxlength">Your message cannot be more than 500 characters.</div>
+							</div>
+						</md-input-container>
+						<div flex layout layout-align="center center">
+							<input class="md-button md-raised md-accent" type="submit" id="submit" value="Submit" style="width: 50%; color: white;"/>
+						</div>
+					</form>
+				</md-content>
+				<md-content name="Report Bug" class="md-padding tabs-transparent" layout="column" layout-align="center center" ng-show="selectedIndex == 1">
+					<p>Bug/Problem Report Form</p>
+				</md-content>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

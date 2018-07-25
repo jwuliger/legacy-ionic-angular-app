@@ -1,0 +1,95 @@
+﻿<ion-side-menus enable-menu-with-back-views="true">
+	<ion-side-menu-content>
+		<ion-nav-bar class="bar-calm">
+			<ion-nav-back-button native-back>
+			</ion-nav-back-button>
+			<ion-nav-buttons side="left" style="margin-left: -10px;">
+				<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+			</ion-nav-buttons>
+			<ion-nav-buttons side="right">
+				<share-icon-button></share-icon-button>
+			</ion-nav-buttons>
+		</ion-nav-bar>
+		<ion-nav-view name="viewName"></ion-nav-view>
+	</ion-side-menu-content>
+
+	<ion-side-menu side="left" enable-menu-with-back-views="true">
+		<ion-content has-bouncing="false" scroll="false" class="menu-outer left-menu">
+			<div id="leftSideMenu" interval="5000" multi-bg="['images/menu-bg-001.jpg']">
+				<div class="row menu-top-options">
+					<div class="col col-top">
+						<ion-list>
+							<ion-item ng-href="" class="item-icon-left" ui-sref-active-if="app.landing" menu-close native-ui-sref="app.landing">
+								<i class="menu-icon icon ion-android-home"></i>
+								<h2 class="menu-text">Home</h2>
+							</ion-item>
+
+							<!-- If Signed In -->
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.admin" native-ui-sref="app.admin" ng-show="userProfile.google.email === 'jaredwuliger@gmail.com'">
+								<i class="menu-icon icon ion-gear-a"></i>
+								<h2 class="menu-text">Admin</h2>
+							</ion-item>
+
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.account" native-ui-sref="app.account({ areaName: 'profile' })" ng-show="userProfile">
+								<i class="menu-icon icon ion-android-settings"></i>
+								<h2 class="menu-text">Account</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" ui-sref-active-if="app.request" menu-close native-ui-sref="app.request" ng-show="userProfile">
+								<i class="menu-icon icon ion-compose" ui-sref-active-if="app.request"></i>
+								<h2 class="menu-text">Make Requests</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" ui-sref-active-if="app.requests" menu-close native-ui-sref="app.requests({ areaName: 'active' })">
+								<i class="menu-icon icon ion-android-search" ui-sref-active-if="app.requests"></i>
+								<h2 class="menu-text">Browse Requests</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" menu-close ng-click="logout()" ng-show="userProfile">
+								<i class="menu-icon icon ion-log-out"></i>
+								<h2 class="menu-text">Logout</h2>
+							</ion-item>
+							<!-- ///////// -->
+
+							<!-- If Signed Out -->
+							<ion-item ng-href="" class="item-icon-left" ui-sref-active-if="app.login" menu-close native-ui-sref="app.login" ng-hide="userProfile">
+								<i class="menu-icon icon ion-android-checkmark-circle"></i>
+								<h2 class="menu-text">Login</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.register" native-ui-sref="app.register" ng-hide="userProfile">
+								<i class="menu-icon icon ion-person-stalker"></i>
+								<h2 class="menu-text">Register</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.about" native-ui-sref="app.about" ng-hide="userProfile">
+								<i class="menu-icon icon ion-at"></i>
+								<h2 class="menu-text">About Us</h2>
+							</ion-item>
+							<!-- ///////// -->
+
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.help" native-ui-sref="app.help">
+								<i class="menu-icon icon ion-help"></i>
+								<h2 class="menu-text">Help</h2>
+							</ion-item>
+							<ion-item ng-href="" class="item-icon-left" menu-close ui-sref-active-if="app.info" native-ui-sref="app.info">
+								<i class="menu-icon icon ion-information-circled"></i>
+								<h2 class="menu-text">Info</h2>
+							</ion-item>
+						</ion-list>
+					</div>
+				</div>
+				<div>
+					<div class="lower-container md-padding" layout="row" layout-align="space-between center" ng-show="userProfile">
+						<div id="profile-img" flex="30" menu-close ui-sref-active-if="app.account" native-ui-sref="app.account({ areaName: 'profile' })">
+							<img ng-src="{{userProfile.picture}}" alt="" class="left-menu-avatar">
+						</div>
+						<div id="user-name" class="user-name" flex="65">{{userProfile.displayName === "" ? userProfile.name : userProfile.displayName}}</div>
+						<div id="notification">
+							<i class="material-icons notification-icon">notifications</i>
+							<!--<span class="notifications-unseen md-whiteframe-5dp">13</span>-->
+						</div>
+					</div>
+					<div class="lower-button" layout="column" layout-align="end center">
+						<md-button class="feedback-button" menu-close native-ui-sref="app.feedback" ui-sref-active-if="app.feedback">We Need Your Feedback!</md-button>
+					</div>
+				</div>
+			</div>
+		</ion-content>
+	</ion-side-menu>
+</ion-side-menus>

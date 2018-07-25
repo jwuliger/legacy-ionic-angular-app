@@ -1,0 +1,25 @@
+﻿<ion-view view-title="Chatting With {{receiverName}}" cache-view="false">
+	<ion-content class="padding md-whiteframe-2dp" style="background-color: rgba(255, 255, 255, 0.8);">
+		<ion-refresher ng-if="!endOfContent"
+					   pulling-text="Pull to refresh..."
+					   on-refresh="doRefresh()">
+		</ion-refresher>
+		<h4 class="text-center dark" ng-show="endOfContent">Up To Date</h4>
+		<div ng-repeat="msg in messages"
+			 ng-class="{other: msg.receiverId != senderId}"
+			 class="messages">
+			<div class="message">
+				<span md-whiteframe="2">{{ msg.message }}</span>
+				<div class="time">{{moment.utc(msg.created).fromNow()}}</div>
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable message-input" keyboard-attach style="background: #FFFFFF">
+		<label class="item-input-wrapper">
+			<input type="text" placeholder="Type your message..." send-message messages="messages" receiver="receiverId" room="roomId" sender="senderId" user-profile="userProfile" ng-model="data.message" />
+		</label>
+		<!-- <button class="button button-clear" ng-click="sendMessage()">
+			Send
+		</button> -->
+	</ion-footer-bar>
+</ion-view>

@@ -1,0 +1,100 @@
+{
+	"rules": {
+		"authGroup": {
+			"$authGroup": {
+				".write": "(newData.child(auth.provider).val() === auth.uid && !data.exists()) || data.child(auth.provider).val() === auth.uid",
+				".read": "data.child(auth.provider).val() === auth.uid",
+				".indexOn": [
+					"password",
+					"facebook",
+					"github",
+					"twitter",
+					"google"
+				]
+			}
+		},
+		"userMapping": {
+			".write": "root.child('authGroup').child(newData.child(auth.uid).val()).child(auth.provider).val() === auth.uid",
+			".read": "(root.child('authGroup').child(data.child(auth.uid).val()).child(auth.provider).val() === auth.uid)",
+			"$userMapping": {
+				".read": "!data.exists()"
+			}
+		},
+		"users": {
+			"$user": {
+				".read": "true",
+				".write": "true",
+				".indexOn": [
+					"email",
+					"updatedAt",
+					"name"
+				]
+			}
+		},
+		"userProfiles": {
+			".read": "true",
+			".write": "true",
+			"categories": {
+				".indexOn": [ "name", ".value", "id" ]
+			},
+			".indexOn": [
+				"email",
+				"name",
+				"userId",
+				"categories"
+			]
+		},
+		"userMedia": {
+			".read": "true", //"auth != null"
+			".write": "true", //"auth != null"
+			".indexOn": [
+				"secure_url",
+				"etag"
+			]
+		},
+		"presence": {
+			".read": "true",
+			".write": "true"
+		},
+		"categories": {
+			".read": "true",
+			".write": "true",
+			".indexOn": [
+				"name"
+			]
+		},
+		"requestSupporters": {
+			".read": "true", //"auth != null"
+			".write": "true", //"auth != null"
+			"$uid": {
+				".indexOn": [ "supporterUserId", "requestTitle" ]
+			},
+			".indexOn": [ "supporterUserId", "supportedUserId", "requester" ]
+		},
+		"requestCount": {
+			".read": "true",
+			".write": "true",
+			".indexOn": [
+				"count"
+			]
+		},
+		"requestAttachment": {
+			".read": "true",
+			".write": "true"
+		},
+		"feedbackMessages": {
+			".read": "true",
+			".write": "true"
+		},
+		"requests": {
+			".read": "true", //"auth != null"
+			".write": "true", //"auth != null"
+			".indexOn": [
+				"requester",
+				"receiver",
+				"isDeleted",
+        "isAccepted"
+			]
+		}
+	}
+}

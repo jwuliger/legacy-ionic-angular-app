@@ -1,0 +1,11 @@
+<ion-view view-title="Conversations">
+	<ion-content>
+		<ion-list>
+			<ion-item class="item-avatar item-icon-right" ng-repeat="user in users" type="item-text-wrap" ui-sref="app.chat-detail({ roomId: userProfile.userId + user.userId, receiverId: user.userId, receiverName: user.displayName })" ng-if="userProfile.userId !== user.userId">
+				<img ng-src="{{user.picture}}" alt="">
+				<h2>{{user.displayName}}</h2>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

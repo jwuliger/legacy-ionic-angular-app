@@ -1,0 +1,40 @@
+<ion-view view-title="Admin">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-content>
+				<md-card-title>
+					<md-card-title-text>
+						<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">Admin</div>
+					</md-card-title-text>
+				</md-card-title>
+				<div ng-show="vm.categories > 0">
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky">Categories</md-subheader>
+					<md-list-item class="secondary-button-padding" ng-repeat="category in vm.categories">
+						<p>{{category.name}}</p>
+						<md-button class="md-secondary">Delete</md-button>
+					</md-list-item>
+					<md-divider></md-divider>
+				</div>
+				<form novalidate name="adminForm">
+					<md-input-container class="md-block">
+						<label>Enter Category Name</label>
+						<md-icon class="mdc-text-blue-900">edit</md-icon>
+						<input name="category" required ng-model="vm.newCategoryName">
+						<div ng-messages="adminForm.category.$error">
+							<div ng-message="required">Please enter a category.</div>
+						</div>
+					</md-input-container>
+					<div layout="row" layout-align="center center">
+						<md-button type="submit" class="md-raised call-to-action-button" ng-disabled="adminForm.$invalid" ng-click="vm.createNewCategory()">
+							<span>Create Category</span>
+						</md-button>
+					</div>
+				</form>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

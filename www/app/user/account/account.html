@@ -1,0 +1,257 @@
+﻿<ion-view view-title="Account">
+	<div layout="row">
+		<md-sidenav flex="40" class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+			<md-toolbar style="background: #2B6B8E;" class="md-padding" layout="row" layout-align="center center">
+				<div style="color: white; margin-top: 4px; font-size: 1em;">Menu</div>
+				<span flex></span>
+				<md-icon class="ion-close" style="margin-right: 5px;" ng-click="close()"></md-icon>
+			</md-toolbar>
+
+			<md-content flex class="sidebar" style="background: transparent;">
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'profile' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-android-person"></i>
+						</span>
+						<span flex md-menu-align-target>Profile</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'settings' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-android-options"></i>
+						</span>
+						<span flex md-menu-align-target>Settings</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'requests-made' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-speakerphone"></i>
+						</span>
+						<span flex md-menu-align-target>Requests I Made</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'requests-received' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-thumbsup"></i>
+						</span>
+						<span flex md-menu-align-target>Requests I Received</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'supporters' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-ios-people"></i>
+						</span>
+						<span flex md-menu-align-target>My Supporters</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'stats' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-stats-bars"></i>
+						</span>
+						<span flex md-menu-align-target>My Stats</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+				<md-menu-item flex layout="row" ui-sref-active="ri-account-menu-active">
+					<md-button ui-sref="app.account({ areaName: 'messages' })">
+						<span flex="15">
+							<i class="ri-account-menu-icon ion-chatbubbles"></i>
+						</span>
+						<span flex md-menu-align-target>Messages</span>
+					</md-button>
+				</md-menu-item>
+				<md-divider></md-divider>
+			</md-content>
+		</md-sidenav>
+	</div>
+	<ion-content style="background-color: rgba(255, 255, 255, 0.8);">
+		<div layout="column" flex style="position: relative;" ng-cloak>
+			<md-toolbar md-no-ink layout="row" layout-align="end center" class="md-whiteframe-2dp" style="background: #2B6B8E;">
+				<div class="md-toolbar-tools">
+					<h2>
+						<span style="color: white; text-transform: capitalize;">{{headerName}}</span>
+					</h2>
+					<span flex></span>
+					<md-button md-no-ink style="margin-right: 10px;" class="md-icon-button" aria-label="Account Settings" ng-click="toggleRight()">
+						<md-icon md-no-ink class="ion-android-more-vertical" style="font-size: 34px; margin-top: -8px; margin-right: -12px"></md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-content flex="100" style="background: transparent;">
+				<md-card id="card-transparent" class="md-whiteframe-2dp" style="margin: 0;">
+
+					<div ng-if="areaName == 'profile'" ng-cloak>
+						<md-content class="md-padding tabs-transparent">
+							<md-card id="card-transparent" class="md-whiteframe-2dp" style="margin: 0;">
+								<div id="account-profile-picture" md-whiteframe="2" ng-style="{'background-image': 'url(' + userProfileBinded.picture + ')'}"></div>
+								<md-card-title style="position: relative;">
+									<md-card-title-text>
+										<span class="md-headline">Hello {{userProfileBinded.displayName === "" ? userProfileBinded.name : userProfileBinded.displayName}}!</span>
+									</md-card-title-text>
+									<md-menu layout="row" md-position-mode="target-right target">
+										<md-button class="md-fab md-accent upload-button" aria-label="Upload Image" ng-click="$mdOpenMenu($event)">
+											<md-icon style="color: white;">file_upload</md-icon>
+										</md-button>
+										<md-menu-content width="4">
+											<md-menu-item>
+												<md-button ng-click="vm.getPicture('camera')">
+													<md-icon md-menu-align-target>add_a_photo</md-icon>
+													Take a new picture
+												</md-button>
+											</md-menu-item>
+											<md-menu-item>
+												<md-button ng-click="vm.getPicture('gallery')">
+													<md-icon>photo_library</md-icon>
+													Import from phone
+												</md-button>
+											</md-menu-item>
+										</md-menu-content>
+									</md-menu>
+									<input id="imagePath" type="hidden" ng-model="userProfileBinded.picture" />
+								</md-card-title>
+								<md-card-content style="padding: 0;">
+									<div class="md-padding">
+										<div style="font-weight: bold; margin-top: -10px; margin-bottom: -10px; text-align: center;" class="flow-text">For anyone to start requesting from you, you must select categories you best affiliate with from the menu below.</div>
+										<md-input-container class="md-block">
+
+											<label>Your Affiliations</label>
+											<md-icon class="ion-earth mdc-text-blue-900"></md-icon>
+											<md-select ng-model="userProfileBinded.categories" ng-model-options="{trackBy: '$value.id'}"
+													   md-on-close="clearSearchTerm()"
+													   data-md-container-class="selectdemoSelectHeader"
+													   multiple>
+												<md-select-header class="demo-select-header">
+													<input ng-model="searchTerm"
+														   type="search"
+														   placeholder="Search for a site.."
+														   class="demo-header-searchbox _md-text">
+												</md-select-header>
+												<md-optgroup label="Sites">
+													<md-option ng-value="{name: category.name, id: category.$id}" ng-repeat="category in vm.categories | filter:searchTerm">{{ category.name }}</md-option>
+												</md-optgroup>
+											</md-select>
+										</md-input-container>
+										<md-input-container class="md-block">
+											<label>Name</label>
+											<md-icon class="ion-android-person mdc-text-blue-900"></md-icon>
+											<input name="fullName" ng-model="userProfileBinded.name">
+										</md-input-container>
+										<md-input-container class="md-block">
+											<label>Display Name</label>
+											<md-icon class="ion-android-contact mdc-text-blue-900"></md-icon>
+											<input name="displayName" ng-model="userProfileBinded.displayName">
+										</md-input-container>
+										<md-input-container class="md-block">
+											<label>Email</label>
+											<md-icon class="ion-ios-email-outline mdc-text-blue-900"></md-icon>
+											<input ng-model="userProfileBinded.email" />
+										</md-input-container>
+									</div>
+								</md-card-content>
+							</md-card>
+						</md-content>
+					</div>
+
+					<div ng-if="areaName == 'settings'" ng-cloak>
+						<md-content class="tabs-transparent md-whiteframe-z2">
+							<md-list ng-repeat="list in data.content.lists" class="tabs-transparent" style="padding: 1px 0;">
+								<div class="md-actions" layout layout-align="start center">
+									<md-subheader class="md-no-sticky md-primary" style="background: transparent; font-size: 1.2em;">{{list.name}}</md-subheader>
+								</div>
+								<md-divider></md-divider>
+								<md-list-item ng-repeat="item in list.items">
+									<md-checkbox aria-label="{{item.name}}" ng-click="toggle(item, selected)"></md-checkbox>
+									<md-content class="md-list-item-text" layout="column" style="background: transparent;">
+										<div class="md-body-2">{{item.name}}</div>
+										<div class="md-caption">{{item.description}}</div>
+									</md-content>
+									<span flex></span>
+									<md-icon aria-label="Show Item" ng-click="toast(item.link)">chevron_right</md-icon>
+								</md-list-item>
+								<md-divider ng-show="!$last"></md-divider>
+							</md-list>
+						</md-content>
+					</div>
+
+					<div ng-if="areaName == 'requests-made' && vm.requestsMade.length > 0" ng-cloak>
+						<request-list requests="vm.requestsMade" search-header-title="My Requests" area="{{areaName}}"></request-list>
+					</div>
+
+					<div ng-if="areaName == 'requests-received'" ng-cloak>
+
+						<md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+							<md-tab label="Active"></md-tab>
+							<md-tab label="Archived"></md-tab>
+							<md-tab label="Ignored"></md-tab>
+							<md-tab label="Accepted"></md-tab>
+							<md-tab label="Fulfilled"></md-tab>
+						</md-tabs>
+
+						<md-content name="Active" style="background: transparent; margin: 0; padding: 0;" ng-show="selectedIndex == 0" ng-cloak>
+							<request-list ng-if="vm.requestsReceivedActive.length > 0" requests="vm.requestsReceivedActive" area="{{areaName}}" sub-area="active"></request-list>
+						</md-content>
+						<md-content name="Archived" style="background: transparent; margin: 0; padding: 0;" ng-show="selectedIndex == 1" ng-cloak>
+							<div style="height: 600px" layout="row" layout-align="center center">
+								<h2>Work in Progress</h2>
+							</div>
+						</md-content>
+						<md-content name="Ignored" style="background: transparent; margin: 0; padding: 0;" ng-show="selectedIndex == 2" ng-cloak>
+							<div style="height: 600px" layout="row" layout-align="center center">
+								<h2>Work in Progress</h2>
+							</div>
+						</md-content>
+						<md-content name="Accepted" style="background: transparent; margin: 0; padding: 0;" ng-show="selectedIndex == 3" ng-cloak>
+							<request-list ng-if="vm.requestsReceivedAccepted.length > 0" requests="vm.requestsReceivedAccepted" area="{{areaName}}" sub-area="accepted"></request-list>
+						</md-content>
+						<md-content name="Fulfilled" style="background: transparent; margin: 0; padding: 0;" ng-show="selectedIndex == 4" ng-cloak>
+							<div style="height: 600px" layout="row" layout-align="center center">
+								<h2>Work in Progress</h2>
+							</div>
+						</md-content>
+					</div>
+
+					<div ng-if="areaName == 'supporters' && vm.activeSupporters.length > 0" ng-cloak>
+						<request-list requests="vm.activeSupporters" search-header-title="Your Supporters" area="{{areaName}}"></request-list>
+					</div>
+
+					<div ng-if="areaName == 'stats'" ng-cloak>
+						<md-content class="tabs-transparent md-whiteframe-z2">
+							<div style="height: 600px" layout="row" layout-align="center center">
+								<h2>Coming Soon</h2>
+							</div>
+						</md-content>
+					</div>
+
+					<div ng-if="areaName == 'messages' && vm.chatSessions.length > 0">
+						<ion-list>
+							<ion-item ng-if="userProfile.userId == user.senderId" class="item-avatar item-icon-right" ng-repeat="user in vm.chatSessions" type="item-text-wrap" ui-sref="app.chat-detail({ roomId: user.senderId + user.receiverId, receiverId: user.receiverId, receiverName: user.receiverName })">
+								<!--ng-if="userProfile.userId !== user.userId"-->
+								<img ng-src="{{user.receiverProfilePicture}}" alt="" style="max-width: 50px; max-height: 50px; top: 12px; left: 14px;">
+								<h2>Sent to <strong>{{user.receiverName}}</strong></h2>
+								<p>about {{vm.moment.utc(user.created).fromNow()}}</p>
+								<i class="icon ion-chevron-right icon-accessory"></i>
+							</ion-item>
+							<ion-item ng-if="userProfile.userId == user.receiverId" class="item-avatar item-icon-right" ng-repeat="user in vm.chatSessions" type="item-text-wrap" ui-sref="app.chat-detail({ roomId: user.senderId + user.receiverId, receiverId: user.senderId, receiverName: user.senderName })">
+								<img ng-src="{{user.senderProfilePicture}}" alt="" style="max-width: 50px; max-height: 50px; top: 12px; left: 14px;">
+								<h2>Received from <strong>{{user.senderName}}</strong></h2>
+								<p>about {{vm.moment.utc(user.created).fromNow()}}</p>
+								<i class="icon ion-chevron-right icon-accessory"></i>
+							</ion-item>
+						</ion-list>
+					</div>
+
+				</md-card>
+			</md-content>
+		</div>
+	</ion-content>
+</ion-view>

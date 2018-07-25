@@ -1,0 +1,15 @@
+﻿<ion-view view-title="Browse Requests">
+	<ion-content>
+		<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="Browse Requests">
+			<md-nav-item md-nav-sref="app.requests({ areaName: 'active' })" name="active">Active</md-nav-item>
+			<md-nav-item md-nav-sref="app.requests({ areaName: 'accepted' })" name="accepted">Accepted</md-nav-item>
+		</md-nav-bar>
+
+		<md-content name="Active" style="background: transparent; margin: 0; padding: 0;" ng-if="areaName == 'active'">
+			<request-list requests="requestsActive" search-header-title="Trending Requests" area="public-browse" user-id="$rootScope.userId"></request-list>
+		</md-content>
+		<md-content name="Accepted" style="background: transparent; margin: 0; padding: 0;" ng-if="areaName == 'accepted'">
+			<request-list requests="requestsAccepted" search-header-title="Accepted Requests" area="public-browse-accepted" user-id="$rootScope.userId"></request-list>
+		</md-content>
+	</ion-content>
+</ion-view>

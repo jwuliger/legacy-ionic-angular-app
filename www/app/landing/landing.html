@@ -1,0 +1,39 @@
+﻿<ion-view view-title="Home">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-content layout="column" layout-align="center center" ng-cloak>
+				<md-card-title>
+					<md-card-title-text>
+						<div id="card-header-text" layout="column" layout-align="center center">
+							<span class="mdc-text-deep-orange-800 md-display-1">Welcome to Beta!</span>
+							<div ng-show="userProfile" style="margin-top: 10px;" class="md-title" ng-cloak>Hello {{userProfile.displayName === "" ? userProfile.name : userProfile.displayName}}</div>
+						</div>
+						<p class="flow-text" style="margin-top: 20px; text-align: center; font-weight: 500;" ng-hide="userProfile">How would you like your voice to become the voice of millions?</p>
+						<p class="flow-text" style="margin-top: 20px; margin-bottom: -5px; text-align: center; color: #455a64; font-weight: 500;" ng-show="userProfile" ng-cloak>Now your voice will become the voice of millions:</p>
+						<p class="flow-text" style="text-align: center;" ng-hide="userProfile" ng-cloak>Request Anything, From Anyone, From Anywhere, For Anyone to See and Support.</p>
+					</md-card-title-text>
+				</md-card-title>
+				<md-button class="md-raised call-to-action-button" native-ui-sref="app.request" ng-show="userProfile" ng-cloak>
+					<span>Make a Request</span>
+				</md-button>
+				<md-button class="md-raised call-to-action-button" native-ui-sref="app.account({ areaName: 'profile' })" ng-show="userProfile" ng-cloak>
+					<span>Manage Your Account</span>
+				</md-button>
+				<md-button class="md-raised call-to-action-button" native-ui-sref="app.about" ng-hide="userProfile" ng-cloak>
+					<span>About Request It!</span>
+				</md-button>
+				<md-button class="md-raised call-to-action-button" native-ui-sref="app.login" ng-hide="userProfile" ng-cloak>
+					<span>Get started now!</span>
+				</md-button>
+
+				<!--<md-button class="md-raised call-to-action-button" ng-click="vm.openToast()">
+					<span>toast me!</span>
+				</md-button>-->
+
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

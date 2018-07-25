@@ -1,0 +1,130 @@
+<ion-view view-title="New Request">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">Make a Request!</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<form name="requestForm" novalidate>
+					<md-input-container md-no-float class="md-block">
+						<label>Choose the category they belong to.</label> <!--md-on-open="categories"-->
+						<md-select name="receiverCategory"
+						           required
+								   ng-model-options="{trackBy: 'category'}"
+						           ng-change="categorySelected = true"
+						           md-selected-text="displayCategoryName(newRequest.category)"
+						           md-on-close="categoryChanged(newRequest.category)"
+						           ng-model="newRequest.category">
+							<md-option ng-value="category" ng-repeat="category in categories | removeWith:{ name: 'Requester (Default)' } ">{{category.name}}</md-option>
+						</md-select>
+						<div class="errors" ng-messages="requestForm.receiverCategory.$error" ng-if="requestForm.$dirty">
+							<div ng-message="required">Please make a selection.</div>
+						</div>
+					</md-input-container>
+
+					<div ng-show="categorySelected" style="margin-top: -30px;"></div>
+
+					<md-input-container class="md-block" ng-show="categorySelected">
+						<md-autocomplete flex required
+						                 md-input-minlength="2"
+						                 md-input-maxlength="50"
+						                 md-no-cache="true"
+						                 md-item-text="user.displayName || user.name"
+						                 md-items="user in userProfileData | filterBy: ['name', 'displayName']: searchText"
+						                 md-search-text="searchText"
+						                 md-selected-item="newRequest.receiver"
+						                 md-input-name="receiver"
+						                 md-floating-label="Type a person or store name.">
+							<md-item-template>
+								<span md-highlight-text="searchText">{{user.name}} ({{user.displayName}})</span>
+							</md-item-template>
+							<md-not-found>
+								No matches found for "{{searchText}}".
+							</md-not-found>
+							<div ng-messages="requestForm.receiver.$error" ng-show="requestForm.receiver.$touched">
+								<div ng-message="required">
+									Type the name of the person or shop you want to request from.
+								</div>
+								<div ng-message="minlength">Your entry is not long enough.</div>
+								<div ng-message="maxlength">Your entry is too long.</div>
+							</div>
+						</md-autocomplete>
+					</md-input-container>
+
+					<div ng-show="categorySelected" style="margin-top: -30px;"></div>
+
+					<!-- Title name input -->
+					<md-input-container class="md-block">
+						<label>Whats your request?</label>
+						<input name="title" ng-model="newRequest.title" required minlength="10">
+						<div ng-messages="requestForm.title.$error" ng-show="requestForm.title.$dirty">
+							<div ng-message-exp="['required', 'minlength']">
+								Please enter the request title. Must be at least 10 characters long.
+							</div>
+						</div>
+					</md-input-container>
+
+					<!-- Description textarea -->
+					<md-input-container class="md-block ri-description">
+						<label>Describe your request.</label>
+						<textarea name="description" ng-model="newRequest.description" columns="1" md-maxlength="800"></textarea>
+						<div ng-messages="requestForm.description.$error" ng-show="requestForm.description.$dirty">
+							<div ng-message="md-maxlength">That's too long!</div>
+						</div>
+					</md-input-container>
+
+					<!-- Image attachment -->
+					<md-card class="photoCard" style="background-color: #F5F5F5;">
+						<md-card-title class="md-whiteframe-4dp photoCardTitleContainer">
+
+							<md-card-title-text id="buttonContentText" ng-show="!picturePreviewMode">
+								<span class="md-headline mdc-text-yellow-800">Attach a picture!</span>
+								<span class="flow-text">A picture can really help the person you are making the request to. You can take a picture right now, or choose one from your photo library <strong>(optional)</strong>.</span>
+							</md-card-title-text>
+
+							<md-card-title-text id="imageContentText" ng-show="picturePreviewMode">
+								<span class="md-headline mdc-text-yellow-800">Nice picture!</span>
+								<span class="flow-text">You can review your picture using the yellow icon to the right. If you are not happy with it, you can remove it with the red icon and try again!.</span>
+							</md-card-title-text>
+
+						</md-card-title>
+
+						<md-card-content id="buttonContent" layout="row" layout-align="space-around center" style="padding-top: 20px;" ng-show="!picturePreviewMode">
+							<md-button id="takePicture" class="md-icon-button cameraButton md-whiteframe-4dp" aria-label="Take Picture" ng-click="getPicture('camera')">
+								<md-icon class="material-icons cameraIcon">photo_camera</md-icon>
+							</md-button>
+							<md-button id="getPicture" class="md-icon-button cameraButton md-whiteframe-4dp" aria-label="Choose From Library" ng-click="getPicture('gallery')">
+								<md-icon class="material-icons cameraIcon">insert_photo</md-icon>
+							</md-button>
+						</md-card-content>
+
+						<md-card-content id="imageContent" layout="row" layout-align="space-between" style="padding-top: 20px;" ng-show="picturePreviewMode">
+							<div id="imgPreviewDiv" class="image size-fixed scale-fit md-whiteframe-2dp" ng-cloak style="display: none;">
+								<img id="imgPreviewImg" alt=""/>
+							</div>
+							<md-card-actions layout="column" layout-align="start end">
+								<div style="margin-bottom: 20px;">
+									<md-icon id="reset-image" md-font-set="zmdi" class="zmdi zmdi-close-circle-o" ng-click="clearImagePreview()"></md-icon>
+								</div>
+								<div>
+									<a href="{{imageSrc}}" data-featherlight="image" data-featherlight-close-icon="" data-featherlight-close-on-click="anywhere">
+										<md-icon id="show-image" md-font-set="zmdi" class="zmdi zmdi-open-in-new"></md-icon>
+									</a>
+								</div>
+							</md-card-actions>
+						</md-card-content>
+
+					</md-card>
+					<div layout="column" layout-align="center center" style="margin-top: 5px;">
+						<md-button type="submit" ng-disabled="requestForm.$invalid" ng-click="addRequest();" class="md-raised signin-button">Submit my Request!</md-button>
+					</div>
+				</form>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

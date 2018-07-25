@@ -1,0 +1,83 @@
+<ion-view view-title="Info">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">Debug Info</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content class="md-padding">
+				<!--<h4>Total Firebase Connections: {{totalViewers}}</h4>-->
+				<md-divider></md-divider>
+				<md-subheader class="md-no-sticky" style="background: transparent;">Device Details</md-subheader>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Local App Version: v{{ vm.localAppVersion }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Cordova: {{ vm.cordova }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Model: {{ vm.model }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Platform: {{ vm.platform }} v{{ vm.version }}</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>UUID: {{ vm.uuid }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Manufacturer: {{ vm.manufacturer }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Serial: {{ vm.serial }} </p>
+					</div>
+				</md-list-item>
+				<md-divider></md-divider>
+				<md-subheader class="md-no-sticky" style="background: transparent;">Connection Status</md-subheader>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>{{ vm.CurrentConnection }} </p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<md-icon>info_outline</md-icon>
+					<div class="md-list-item-text">
+						<p>Your IP: {{ vm.ipAddress }} </p>
+					</div>
+				</md-list-item>
+
+				<!--<div class="md-title">To Build:</div>
+				<div class="md-body-1" style="margin-top: 15px;">Tell a Friend</div>
+				<div class="md-body-1" style="margin-top: 5px;">Rate This App</div>
+				<div class="md-body-1" style="margin-top: 5px;">Send Feedback</div>
+				<div class="md-body-1" style="margin-top: 5px;">Privacy Policy</div>
+				<div class="md-body-1" style="margin-top: 5px;">Terms of Service</div>-->
+				<div class="md-body-2" style="margin-top: 10px; text-align: center;">Copyright &#169; 2016 Request It, Inc. All rights reserved.</div>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

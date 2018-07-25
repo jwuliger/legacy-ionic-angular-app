@@ -1,0 +1,6 @@
+﻿<div class="multi-bg-outer" ng-class="{ 'finish-loading': loaded }">
+	<img bg class="multi-bg {{ helperClass }}" ng-src="{{ bg_img }}" alt="" />
+	<span class="bg-overlay"></span>
+	<ion-spinner ng-show="!loaded" class="spinner-on-load"></ion-spinner>
+	<ng-transclude></ng-transclude>
+</div>

@@ -1,0 +1,84 @@
+﻿<ion-view view-title="Register">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800" style="margin-bottom: -20px;">Glad to have you!</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content style="text-align: left;">
+				<form name="registerForm" novalidate>
+
+					<!-- Email input -->
+					<md-input-container class="md-block">
+						<md-icon class="material-icons mdc-text-blue-900">email</md-icon>
+						<input type="email" name="email" ng-model="vm.user.email" placeholder="Email (required)" minlength="6" maxlength="100" ng-pattern="vm.emailPattern" required autocomplete="off">
+
+						<!-- Email error -->
+						<div ng-messages="registerForm.email.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Please enter a valid email between 6 and 100 characters long.
+							</div>
+						</div>
+
+					</md-input-container>
+
+					<!-- User name input -->
+					<md-input-container class="md-block">
+						<md-icon class="material-icons mdc-text-blue-900">person</md-icon>
+						<input type="text" name="userName" ng-model="vm.user.userName" placeholder="Username (required)" required minlength="4" maxlength="100" autocomplete="off">
+
+						<!-- User name error -->
+						<div ng-messages="registerForm.userName.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Please enter a user name between 4 and 100 characters long.
+							</div>
+						</div>
+
+					</md-input-container>
+
+					<!-- Password input -->
+					<md-input-container class="md-block">
+						<md-icon class="material-icons mdc-text-blue-900">vpn_key</md-icon>
+						<input type="password" name="password" placeholder="Password (required)" ng-model="vm.user.password" required minlength="6" maxlength="100" autocomplete="off">
+
+						<!-- Password error -->
+						<div ng-messages="registerForm.password.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength']">
+								Please enter a password between 6 and 100 characters long.
+							</div>
+						</div>
+
+					</md-input-container>
+
+					<!-- Verify Password input -->
+					<md-input-container class="md-block">
+						<md-icon class="material-icons mdc-text-blue-900">vpn_key</md-icon>
+						<input type="password" name="confirmPassword" placeholder="Verify password (required)" ng-model="vm.user.confirmPassword" required compare-to="vm.user.password" autocomplete="off">
+
+						<!-- Verify Password error -->
+						<div ng-messages="registerForm.confirmPassword.$error" role="alert">
+							<div ng-message="required">
+								Please re-enter your password.
+							</div>
+							<div ng-message="compareTo">
+								The passwords entered do not match.
+							</div>
+						</div>
+
+					</md-input-container>
+
+					<div style="text-align: center; margin-bottom: 20px; margin-top: -10px;">Signing up signifies that you have read and agree to the <a href="javascript:window.open('http://requestitinc.weebly.com', '_blank');">Terms of Service</a> and <a href="javascript:window.open('https://www.iubenda.com/privacy-policy/7858706', '_blank');">Privacy Policy</a>.</div>
+
+					<div layout="row" layout-align="center center">
+						<md-button type="submit" ng-disabled="registerForm.$invalid" ng-click="vm.register(vm.user);" class="md-raised signin-button">Register now!</md-button>
+					</div>
+
+				</form>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,26 @@
+﻿<md-toolbar ng-show="!showSearch" class="md-whiteframe-2dp ng-cloak" style="background: #2B6B8E;">
+	<div class="md-toolbar-tools">
+		<h3 style="color: #eceff1;" ng-bind="$ctrl.searchHeaderTitle"></h3>
+		<span flex></span>
+		<md-button aria-label="Search" ng-click="showSearch = !showSearch" class="md-icon-button md-primary md-button md-ink-ripple">
+			<ng-md-icon class="material-icons" style="color: #eceff1;">search</ng-md-icon>
+		</md-button>
+		<md-button aria-label="Filter" ng-click="showFilter()" class="md-icon-button md-primary md-button md-ink-ripple">
+			<ng-md-icon class="material-icons" style="color: #eceff1;">filter_list</ng-md-icon>
+		</md-button>
+	</div>
+</md-toolbar>
+<md-toolbar class="md-whiteframe-2dp" ng-show="showSearch" style="background: #2B6B8E;">
+	<div class="md-toolbar-tools">
+		<md-button ng-click="showSearch = !showSearch" aria-label="Back" class="md-icon-button md-primary md-button md-ink-ripple">
+			<ng-md-icon class="material-icons" style="color: #eceff1;">arrow_back</ng-md-icon>
+		</md-button>
+		<md-input-container flex>
+			<label>&nbsp;</label>
+			<input id="search-requests" name="search-requests" ng-model="$parent.searchText" placeholder="Search" style="border-color: #eceff1; color: #eceff1;">
+		</md-input-container>
+		<md-button aria-label="Search" ng-click="showSearch = !showSearch" class="md-icon-button md-primary md-button md-ink-ripple">
+			<ng-md-icon class="material-icons" style="color: #eceff1;">search</ng-md-icon>
+		</md-button>
+	</div>
+</md-toolbar>

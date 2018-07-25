@@ -1,0 +1,53 @@
+<ion-view view-title="Help Content">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text layout="row" layout-align="center center">
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">Future Help Section</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-list flex>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky transparent" style="font-weight: 600; font-size: 1.2em;">Known Issues (General)</md-subheader>
+					<md-list-item class="md-3-line md-long-text">
+						<i class="material-icons" style="font-size: 36px; margin-right: 10px; margin-top: 22px;"></i> <!--&#xE32C;-->
+						<div class="md-list-item-text">
+							<h3>Always Working On Performance</h3>
+							<p>
+								Depending on what device and OS version you have, we are working to improve the performance of the app views.
+								We are working on this before we add new functionality.
+							</p>
+						</div>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky transparent" style="font-weight: 600; font-size: 1.2em;">Known Issues (iOS)</md-subheader>
+					<md-list-item class="md-3-line md-long-text">
+						<i class="material-icons" style="font-size: 36px; margin-right: 10px; margin-top: 22px;"></i>
+						<div class="md-list-item-text">
+							<h3>Keyboard</h3>
+							<p>
+								The keyboard on iOS will not perform as expected until we are able to switch from using UIWebView to WKWebView.
+								WKWebView has been the standard in iOS since version 8. However there are bugs that are currently keeping certain files and URL's from loading.
+							</p>
+						</div>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky transparent" style="font-weight: 600; font-size: 1.2em;">Known Issues (Android)</md-subheader>
+					<md-list-item class="md-3-line md-long-text">
+						<i class="material-icons" style="font-size: 36px; margin-right: 10px; margin-top: 22px;"></i>
+						<div class="md-list-item-text">
+							<h3>N/A</h3>
+							<p>
+								Nothing specific at this time.
+							</p>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

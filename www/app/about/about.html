@@ -1,0 +1,49 @@
+<ion-view view-title="About Us">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center">
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title>
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline mdc-text-deep-orange-800">So what is Request It?</div>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<!--
+				This is a hack to md-tabs:
+				I had to seperate the tab content
+				from the parent directive due to the transition
+				animation's poor performance on mobile devices
+				-->
+				<md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" md-center-tabs="true" md-selected="selectedIndex">
+					<md-tab label="Who We Are"></md-tab>
+					<md-tab label="What We Do"></md-tab>
+				</md-tabs>
+				<md-content name="Who We Are" class="md-padding ri-transparent" layout="column" layout-align="center center" ng-show="selectedIndex == 0">
+					<div class="flow-text md-padding">
+						Request It is an innovative way for you to broadcast something you desire that can be seen by anyone, and most importantly
+						the person you are reaching out to. As the person being reached, our tool allows you to track your requests and its
+						popularity and organize them
+					</div>
+					<div ng-hide="userProfile" layout="row" layout-align="space-around center">
+						<md-button class="md-raised custom-button" native-ui-sref="app.learn" style="width: 200px;">Learn More</md-button>
+						<md-button class="md-raised custom-button" native-ui-sref="app.login" style="width: 200px;">Get Started!</md-button>
+					</div>
+					<md-button class="md-raised custom-button" native-ui-sref="app.learn" style="min-width: 100%;" ng-show="userProfile">Learn More</md-button>
+				</md-content>
+				<md-content name="What We Do" class="md-padding ri-transparent" layout="column" layout-align="center center" ng-show="selectedIndex == 1">
+					<p class="flow-text md-padding">
+						Request It! enables soliciting and harvesting of ideas, suggestions and feedback to improve your products and services. We
+						represent a new breed of collaboration-centric applications that harness the collective opinions of the crowd.
+					</p>
+					<div ng-hide="userProfile" layout="row" layout-align="space-around center">
+						<md-button class="md-raised custom-button" native-ui-sref="app.learn" style="width: 200px;">Learn More</md-button>
+						<md-button class="md-raised custom-button" native-ui-sref="app.login" style="width: 200px;">Get Started!</md-button>
+					</div>
+					<md-button class="md-raised custom-button" native-ui-sref="app.learn" style="min-width: 100%;" ng-show="userProfile">Learn More</md-button>
+				</md-content>
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

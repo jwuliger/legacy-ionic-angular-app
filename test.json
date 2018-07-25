@@ -1,0 +1,41 @@
+﻿{
+	"provider": "google",
+	"uid": "jadkxrpmpyMofpoBRNMO7WeBB3g1",
+	"google": {
+		"id": "114452258492142586969",
+		"accessToken": "ya29.CjUAA2CBCVq3SYeK1FWacQi2XyFIGqJUvEJxsAc9u3ruh3tEM_-rvQqQ3m-Mca0euQsty22CBw",
+		"displayName": "Jared Wuliger",
+		"email": "jaredwuliger@gmail.com",
+		"cachedUserProfile": {
+			"id": "114452258492142586969",
+			"email": "jaredwuliger@gmail.com",
+			"verified_email": true,
+			"name": "Jared Wuliger",
+			"given_name": "Jared",
+			"family_name": "Wuliger",
+			"link": "https://plus.google.com/+JaredWuliger",
+			"picture": "https://lh5.googleusercontent.com/-bDa4Q-2cOJ0/AAAAAAAAAAI/AAAAAAAAAN0/l9zmQWZAN8s/photo.jpg",
+			"gender": "male",
+			"locale": "en"
+		},
+		"profileImageURL": "https://lh5.googleusercontent.com/-bDa4Q-2cOJ0/AAAAAAAAAAI/AAAAAAAAAN0/l9zmQWZAN8s/photo.jpg"
+	},
+	"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphcmVkd3VsaWdlckBnbWFpbC5jb20iLCJwcm92aWRlcl9pZCI6IjExNDQ1MjI1ODQ5MjE0MjU4Njk2OSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaWF0IjoxNDY1ODQ5NDAyLCJ2IjowLCJkIjp7InVpZCI6ImphZGt4cnBtcHlNb2Zwb0JSTk1PN1dlQkIzZzEiLCJwcm92aWRlciI6Imdvb2dsZSJ9fQ.3ue0R14vrfvoLQfW2t6XYSUSFg4-WrpHw5767OupXDg",
+	"auth": {
+		"uid": "jadkxrpmpyMofpoBRNMO7WeBB3g1",
+		"provider": "google",
+		"token": {
+			"email_verified": false,
+			"email": "jaredwuliger@gmail.com",
+			"exp": 1465935802,
+			"iat": 1465849402,
+			"sub": "jadkxrpmpyMofpoBRNMO7WeBB3g1",
+			"aud": "project-613918043959423740",
+			"auth_time": 1465849402,
+			"iss": "https://securetoken.google.com/project-613918043959423740",
+			"firebase": { "identities": { "google.com": [ "114452258492142586969" ] } }
+		}
+	},
+	"expires": 1465935802,
+	"authGroup": "-KK377GRhaiClEh5w3Ke"
+}

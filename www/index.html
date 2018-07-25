@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Request It!</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="Content-Security-Policy" content="img-src * data:; default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *">
+
+	<!--Third-party CSS-->
+	<link href="lib/angular-toastr/dist/angular-toastr.min.css" rel="stylesheet">
+	<link href="css/vendor/material-design-color-palette.min.css" rel="stylesheet">
+	<link href="css/vendor/material-design-iconic-font.min.css" rel="stylesheet">
+	<link href="fonts/material-icons.min.css" rel="stylesheet">
+
+	<link href="lib/ionic/release/css/ionic.min.css" rel="stylesheet">
+	<link href="lib/angular-material/angular-material.min.css" rel="stylesheet">
+
+	<!-- App References -->
+	<link href="css/app.min.css" rel="stylesheet" />
+
+	<script src="app/core/common/jquery-2.2.4.min.js"></script>
+
+	<!--Angular-->
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/moment/min/moment.min.js"></script>
+	<script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="lib/angular-filter/dist/angular-filter.min.js"></script>
+	<script src="lib/angular-animate/angular-animate.min.js"></script>
+	<script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="lib/angular-toastr/dist/angular-toastr.min.js"></script>
+	<script src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+	<script src="lib/ionic/release/js/ionic.min.js"></script>
+	<script src="lib/ionic/release/js/ionic-angular.min.js"></script>
+
+	<script src="lib/angular-aria/angular-aria.min.js"></script>
+	<script src="lib/angular-messages/angular-messages.min.js"></script>
+	<script src="lib/angular-material/angular-material.min.js"></script>
+
+	<!--Third-party JS-->
+	<script src="lib/underscore/underscore-min.js"></script>
+	<script src="lib/firebase/firebase.js"></script>
+	<script src="lib/angularfire/dist/angularfire.min.js"></script>
+	<script src="app/core/common/firebase-util.min.js"></script>
+	<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+	<script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
+	<script src="lib/ng-twitter-api/dist/ng-twitter-api.min.js"></script>
+	<script src="lib/jsSHA/src/sha1.js"></script>
+	<script src="lib/ionic-native-transitions/dist/ionic-native-transitions.min.js"></script>
+	<script src="lib/ngcordova-wrapper-nativestorage/dist/ngcordova-wrapper-nativestorage.min.js"></script>
+
+	<!-- cordova script (this will be a 404 during development) -->
+	<script src="cordova.js"></script>
+
+	<!--main app module-->
+	<script src="app/app.module.js"></script>
+
+	<!--utilities-->
+	<script src="app/core/common/underscore.factory.js"></script>
+
+	<!--core module-->
+	<script src="app/core/core.module.js"></script>
+	<script src="app/core/core.config.js"></script>
+	<script src="app/core/core.constants.js"></script>
+
+	<script src="app/core/core.route.js"></script>
+	<script src="app/core/core.controller.js"></script>
+	<script src="app/core/core.decorators.js"></script>
+	<script src="app/core/core.directives.js"></script>
+
+	<script src="app/core/core.firebase.ref.js"></script>
+	<script src="app/core/core.firebase.auth.js"></script>
+	<script src="app/core/core.firebase.utilities.js"></script>
+	<!--<script src="app/core/core.firebase.presence.js"></script>-->
+
+	<script src="app/core/core.security.js"></script>
+	<script src="app/core/core.error.codes.js"></script>
+	<script src="app/core/cordova/geolocation.service.js"></script>
+	<script src="app/core/cordova/network.service.js"></script>
+	<script src="app/core/cordova/file.transfer.service.js"></script>
+	<script src="app/core/cordova/toast.service.js"></script>
+
+	<script src="app/core/core.image.preload.factory.js"></script>
+	<script src="app/core/core.auth.service.js"></script>
+	<script src="app/core/core.modal.service.js"></script>
+	<script src="app/core/core.loader.service.js"></script>
+	<script src="app/core/core.logo.directive.js"></script>
+	<script src="app/core/common/angularfire.decorator.js"></script>
+	<script src="app/core/core.requests.service.js"></script>
+	<script src="app/core/core.supporter.service.js"></script>
+	<script src="app/core/core.chat.service.js"></script>
+	<script src="app/core/core.get.client.ip.js"></script>
+	<script src="app/core/common/ionic-loading.interceptor.js"></script>
+	<script src="app/core/cordova/native.data.storage.js"></script>
+
+	<!--components-->
+	<script src="app/components/components.module.js"></script>
+	<script src="app/components/requests/requests.component.js"></script>
+	<script src="app/components/requests/search.bar.component.js"></script>
+
+	<!--admin module - only me-->
+	<script src="app/admin/admin.module.js"></script>
+	<script src="app/admin/admin.route.js"></script>
+	<script src="app/admin/admin.controller.js"></script>
+
+	<!--user management module-->
+	<script src="app/user/user.module.js"></script>
+	<script src="app/user/user.route.js"></script>
+	<script src="app/user/login/login.controller.js"></script>
+	<script src="app/user/register/register.controller.js"></script>
+	<script src="app/user/account/account.controller.js"></script>
+
+	<!--layout module-->
+	<script src="app/layout/layout.module.js"></script>
+	<script src="app/layout/layout.directives.js"></script>
+
+	<!--global error handling, logging, and router helpers-->
+	<script src="app/blocks/exception/exception.module.js"></script>
+	<script src="app/blocks/logger/logger.module.js"></script>
+	<script src="app/blocks/router/router.module.js"></script>
+	<script src="app/blocks/exception/exception-handler.provider.js"></script>
+	<script src="app/blocks/exception/exception.js"></script>
+	<script src="app/blocks/logger/logger.js"></script>
+	<script src="app/blocks/router/router-helper.provider.js"></script>
+
+	<!--request module-->
+	<script src="app/requests/requests.module.js"></script>
+	<script src="app/requests/requests.route.js"></script>
+	<script src="app/requests/requests.controller.js"></script>
+
+	<!--browse requests module-->
+	<script src="app/requests/browse/requests.browse.module.js"></script>
+	<script src="app/requests/browse/browse.controller.js"></script>
+
+	<!--about module-->
+	<script src="app/about/about.module.js"></script>
+	<script src="app/about/about.route.js"></script>
+	<script src="app/about/about.controller.js"></script>
+
+	<!--info module-->
+	<script src="app/info/info.module.js"></script>
+	<script src="app/info/info.route.js"></script>
+	<script src="app/info/info.controller.js"></script>
+
+	<!--help module-->
+	<script src="app/help/help.module.js"></script>
+	<script src="app/help/help.route.js"></script>
+	<script src="app/help/help.controller.js"></script>
+
+	<!--feedback, problem report, and contact module-->
+	<script src="app/feedback/feedback.module.js"></script>
+	<script src="app/feedback/feedback.route.js"></script>
+	<script src="app/feedback/feedback.controller.js"></script>
+	<script src="app/feedback/feedback.factory.js"></script>
+
+	<!--landing module-->
+	<script src="app/landing/landing.module.js"></script>
+	<script src="app/landing/landing.route.js"></script>
+	<script src="app/landing/landing.controller.js"></script>
+
+	<!--chat module-->
+	<script src="app/chat/chat.module.js"></script>
+	<script src="app/chat/chat.route.js"></script>
+	<script src="app/chat/chat.controller.js"></script>
+	<script src="app/chat/chat.directives.js"></script>
+
+	<!--template cache-->
+	<script src="app/layout/views.js"></script>
+
+</head>
+
+<body ng-app="app" class="ng-cloak">
+	<ion-nav-view></ion-nav-view>
+</body>
+</html>

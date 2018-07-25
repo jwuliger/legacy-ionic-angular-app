@@ -1,0 +1,4 @@
+It is your responsibility to comply with export regulations, and you should revisit these questions if your encryption or exemption status changes.
+If your encryption and exemption eligibility stay the same, use the following key-value pair in your Info.plist to provide export compliance information within your build:
+
+<key>ITSAppUsesNonExemptEncryption</key><false/>

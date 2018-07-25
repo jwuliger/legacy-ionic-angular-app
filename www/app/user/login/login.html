@@ -1,0 +1,130 @@
+﻿<ion-view view-title="Login">
+	<ion-content>
+		<md-card id="card-transparent" class="md-whiteframe-2dp">
+			<md-card-header layout="row" layout-align="center center"> <!--class="hide-on-keyboard-open"-->
+				<request-it-logo></request-it-logo>
+			</md-card-header>
+			<md-card-title class="noBottomPadding">
+				<md-card-title-text>
+					<div id="card-header-text" class="md-headline flow-text mdc-text-deep-orange-800" style="margin-bottom: 10px;">Login & Registration</div>
+					<span class="flow-text" style="text-align: center; margin-bottom: 10px;">Hi! If this is your first time here, it is great to have you. You can register & signup at the same time with your social account. You can also go old school and use your email ;)</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<md-tabs md-dynamic-height md-border-bottom md-stretch-tabs="always" md-center-tabs="true" md-selected="selectedIndex">
+					<md-tab label="Social"></md-tab>
+					<md-tab label="Email"></md-tab>
+				</md-tabs>
+				<md-content class="md-padding transparent" ng-show="selectedIndex == 0">
+					<div class="login-social-media-container">
+						<div class="social">
+							<span class="flow-text mdc-text-deep-orange-800">use your social account</span>
+						</div>
+					</div>
+					<div>
+						<md-button class="md-raised social-login-button-google"
+								   aria-label="Sign in with Google"
+								   ng-mouseenter="vm.googleDividerBorder='1px #EEAE04 solid'"
+								   ng-mouseleave="vm.googleDividerBorder='1px #C73323 solid'"
+								   ng-click="vm.loginWithSocial('google')">
+							<div layout="row" layout-align="start center">
+								<div style="padding-bottom: 3px; padding-left: 10px; padding-right: 10px;">
+									<md-icon md-font-set="zmdi" class="zmdi zmdi-google zmdi-hc-2x"></md-icon>
+								</div>
+								<div ng-style="{ 'border-right' : vm.googleDividerBorder, 'height' : '45px' }"></div>
+								<div style="width: 100%;">Sign in with Google</div>
+							</div>
+						</md-button>
+
+						<md-button class="md-raised social-login-button-facebook"
+								   aria-label="Sign in with Facebook"
+								   ng-mouseenter="vm.facebookDividerBorder='1px #EEAE04 solid'"
+								   ng-mouseleave="vm.facebookDividerBorder='1px #345296 solid'"
+								   ng-click="vm.loginWithSocial('facebook')">
+							<div layout="row" layout-align="start center">
+								<div style="padding-bottom: 3px; padding-left: 10px; padding-right: 10px;">
+									<md-icon md-font-set="zmdi" class="zmdi zmdi-facebook zmdi-hc-2x"></md-icon>
+								</div>
+								<div ng-style="{ 'border-right' : vm.facebookDividerBorder, 'height' : '45px' }"></div>
+								<div style="width: 100%;">Sign in with Facebook</div>
+							</div>
+						</md-button>
+
+						<md-button class="md-raised social-login-button-twitter"
+								   aria-label="Sign in with Twitter"
+								   ng-mouseenter="vm.twitterDividerBorder='1px #EEAE04 solid'"
+								   ng-mouseleave="vm.twitterDividerBorder='1px #1C97CC solid'"
+								   ng-click="vm.loginWithSocial('twitter')">
+							<div layout="row" layout-align="start center">
+								<div style="padding-bottom: 3px; padding-left: 10px; padding-right: 10px;">
+									<md-icon md-font-set="zmdi" class="zmdi zmdi-twitter zmdi-hc-2x"></md-icon>
+								</div>
+								<div ng-style="{ 'border-right' : vm.twitterDividerBorder, 'height' : '45px' }"></div>
+								<div style="width: 100%;">Sign in with Twitter</div>
+							</div>
+						</md-button>
+					</div>
+				</md-content>
+
+				<md-content class="md-padding transparent" ng-show="selectedIndex == 1">
+					<form name="passwordLoginForm" novalidate>
+
+						<div class="login-social-media-container">
+							<div class="social">
+								<span class="flow-text mdc-text-deep-orange-800">sign in with request it</span>
+							</div>
+						</div>
+
+						<!-- Email input -->
+						<md-input-container class="md-block">
+							<md-icon class="material-icons mdc-text-blue-900">email</md-icon>
+							<input type="email" name="email" ng-model="vm.user.email" placeholder="Email (required)" minlength="6" maxlength="100" ng-pattern="vm.emailPattern" required autocomplete="off">
+
+							<!-- Email error -->
+							<div ng-messages="passwordLoginForm.email.$error" role="alert">
+								<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+									Please enter a valid email between 6 and 100 characters long.
+								</div>
+							</div>
+
+						</md-input-container>
+
+						<!-- Password input -->
+						<md-input-container class="md-block">
+							<md-icon class="material-icons mdc-text-blue-900">vpn_key</md-icon>
+							<input type="password" name="password" placeholder="Password (required)" ng-model="vm.user.password" required minlength="6" maxlength="100" autocomplete="off">
+
+							<!-- Password error -->
+							<div ng-messages="passwordLoginForm.password.$error" role="alert">
+								<div ng-message-exp="['required', 'minlength', 'maxlength']">
+									Please enter a password between 6 and 100 characters long.
+								</div>
+							</div>
+
+						</md-input-container>
+
+						<div layout="row" layout-align="end center" style="margin-top: -25px; margin-bottom: 20px;">
+							<a ng-click="openModal()" style="font-size: 1rem;">Forgot password?</a>
+						</div>
+
+						<div layout="row" layout-align="center center">
+							<md-button type="submit" ng-disabled="passwordLoginForm.$invalid" ng-click="vm.loginPassword(vm.user)" class="md-raised signin-button">Sign In</md-button>
+						</div>
+					</form>
+				</md-content>
+
+				<div class="login-social-media-container" style="margin-top: -1px;">
+					<div class="social">
+						<span class="flow-text mdc-text-deep-orange-900">don't have an account?</span>
+					</div>
+				</div>
+				<div layout="row" layout-align="center center">
+					<md-button native-ui-sref="app.register" class="md-raised signup-button">Register Old School</md-button>
+				</div>
+
+				<div style="text-align: center; margin-bottom: 20px; margin-top: 20px;">* Signing up signifies that you have read and agree to the <a href="javascript:window.open('http://requestitinc.weebly.com', '_blank', 'location=yes');">Terms of Service</a> and <a href="javascript:window.open('https://www.iubenda.com/privacy-policy/7858706', '_blank', 'location=yes');">Privacy Policy</a>.</div>
+
+			</md-card-content>
+		</md-card>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,161 @@
+﻿<div layout="column" class="relative md-no-sticky ng-cloak" layout-fill role="main">
+	<input type="hidden" ng-value="$ctrl.userId" />
+	<search-tool-bar search-header-title="{{$ctrl.searchHeaderTitle}}" ng-show="$ctrl.area == 'public-browse' || $ctrl.area == 'public-browse-accepted'"></search-tool-bar>
+	<md-content style="background: transparent;" class="ng-cloak">
+		<!--<pre>{{$ctrl.area}}</pre>-->
+		<md-list>
+			<md-list-item ng-repeat="request in $ctrl.requests | filter: searchText | orderBy:['-count','-createdAt']" layout="row" layout-align="center center">
+				<div class="card with-badge" md-whiteframe="3">
+					<div class="inner-wrap">
+						<h3>
+							<a>
+								<display-user-info uid="{{request.receiver}}" type="receiver" ng-if="$ctrl.area !== 'supporters'"></display-user-info>
+								<display-user-info uid="{{request.supporterUserId}}" ng-if="$ctrl.area == 'supporters'" area="$ctrl.area"></display-user-info>
+							</a> <span ng-if="$ctrl.area == 'requests-received'"><br />{{request.count | number:0}} Total Requests</span>
+						</h3>
+						<div style="font-size: 1.4em; margin-bottom: 3px; font-style: italic;" ng-if="$ctrl.area == 'supporters'">Request supported:</div>
+						<a class="title" href="#">{{request.title}}</a>
+						<p style="font-size: 1.1em; font-weight: 500;">Category: {{request.categoryName}}</p>
+						<p>{{request.description}}</p>
+					</div>
+					<div class="ri-request-made-time" layout="row" layout-align="end center">
+						<i class="material-icons" style="font-size: 20px; margin-bottom: 2px;">access_time</i>
+						<span style="padding-left: 4px;" ng-if="$ctrl.area !== 'supporters'">made {{$ctrl.moment.utc(request.createdAt).fromNow()}}</span>
+						<span style="padding-left: 4px;" ng-if="$ctrl.area == 'supporters'">upvoted {{$ctrl.moment.utc(request.supporterCreatedAt).fromNow()}}</span>
+					</div>
+					<div class="likes-bar">
+						<p ng-if="$ctrl.area !== 'supporters'">
+							<a href="">
+								<display-user-info uid="{{request.requester}}" type="requester"></display-user-info>
+							</a> It has been upvoted <strong>{{request.count - 1 | number:0}}</strong> times, by these <a href="#">supporters</a>
+						</p>
+						<p ng-if="$ctrl.area == 'supporters'" style="margin-top: 0.5em;">
+							Your request has <a href="#">{{request.count - 1 | number:0}}</a> upvote(s)!
+						</p>
+					</div>
+					<div class="action-bar">
+						<ul>
+							<li class="requests" ng-if="$ctrl.area == 'public-browse'">
+								<a href="" ng-click="$ctrl.upVote(request.$id, request.requester, request.title)">
+									<div layout="row" layout-align="start center">
+										<i class="material-icons" style="color: #4caf50; font-size: 1.7em;">thumb_up</i>
+										<span class="requests-link" style="margin-bottom: -5px; margin-left: 5px;"> {{request.count | number:0}} Requests</span>
+									</div>
+								</a>
+							</li>
+							<li class="requests" ng-if="$ctrl.area == 'requests-made'">
+								<a href="">
+									<div layout="row" layout-align="start center">
+										<i class="material-icons" style="color: #4caf50; font-size: 1.7em;">check</i>
+										<span class="requests-link" style="margin-bottom: -5px; margin-left: 5px;"> {{request.count -1 | number:0}} Upvotes</span>
+									</div>
+								</a>
+							</li>
+							<li class="requests" ng-if="$ctrl.area == 'supporters'" style="padding: 0 0.5em;">
+								<a href="" ng-click="$ctrl.openThanksConfirm($event)">
+									<div layout="row" layout-align="center center" style="margin-top: 3px;">
+										<i class="ion-happy-outline" style="color: #4caf50; font-size: 1.7em; margin-left: 5px;"></i>
+										<span class="requests-link" style="margin-left: 5px; font-size: 1em;">Say Thanks {{request.displayName}}!</span>
+									</div>
+								</a>
+							</li>
+							<li class="requests" ng-if="$ctrl.area == 'requests-received' && $ctrl.subArea == 'active'" style="padding: 0 0.5em;">
+								<a href="" ng-click="$ctrl.acceptRequest(request.$id, request.requester, request.displayName)">
+									<div layout="row" layout-align="center center" style="margin-top: 3px;">
+										<i class="ion-checkmark-circled" style="color: #4caf50; font-size: 1.7em; margin-left: 5px;"></i>
+										<span class="requests-link" style="margin-left: 10px; font-size: 1em;">Accept Request</span>
+									</div>
+								</a>
+							</li>
+							<li class="requests" ng-if="$ctrl.area == 'requests-received' && $ctrl.subArea == 'accepted'" style="padding: 0 0.5em;">
+								<a href="">
+									<div layout="row" layout-align="center center" style="margin-top: 3px;">
+										<i class="ion-checkmark-circled" style="color: #4caf50; font-size: 1.7em; margin-left: 5px;"></i>
+										<span class="requests-link" style="margin-left: 10px; font-size: 1em;">Fufill Request</span>
+									</div>
+								</a>
+							</li>
+							<li class="report" ng-if="$ctrl.area == 'public-browse'">
+								<a href="" ng-click="$ctrl.reportRequest(request.$id)">
+									<i class="material-icons" style="color: #bf360c; font-size: 1.7em; margin-top: 2px;">report_problem</i><span>report</span>
+								</a>
+							</li>
+							<!--ng-click="$ctrl.openChatConfirm($ctrl.subArea, request.displayName)"-->
+							<li class="report" ng-if="$ctrl.subArea == 'accepted'">
+								<a ui-sref="app.chat-detail({ roomId: request.receiver + request.requester, receiverId: request.requester, receiverName: request.displayName })" style="margin-top: 2px;">
+									<i class="ion-chatbox-working" style="color: #f57c00; font-size: 1.7em;"></i><span>chat</span>
+								</a>
+							</li>
+							<li class="report" ng-if="$ctrl.area == 'supporters'">
+								<a ui-sref="app.chat-detail({ roomId: request.receiver + request.requester, receiverId: request.supporterRequestId, receiverName: request.displayName })" style="margin-top: 2px;">
+									<i class="ion-chatbox-working" style="color: #f57c00; font-size: 1.7em;"></i><span>chat</span>
+								</a>
+							</li>
+							<li class="report" ng-if="$ctrl.area == 'requests-made'">
+								<a href="" style="margin-top: 2px;">
+									<md-menu md-position-mode="target-right target">
+										<i class="ion-navicon-round" style="color: #f57c00; font-size: 1.7em;" ng-click="$mdOpenMenu($event)"></i>
+										<md-menu-content width="4">
+											<md-menu-item>
+												<md-button ng-click="$ctrl.editRequest(request.$id)">
+													<div layout="row" flex>
+														<p flex>Edit</p>
+														<md-icon md-menu-align-target class="material-icons" style="margin: auto 3px auto 0;">mode_edit</md-icon>
+													</div>
+												</md-button>
+											</md-menu-item>
+											<md-menu-divider></md-menu-divider>
+											<md-menu-item>
+												<md-button ng-click="$ctrl.deleteRequestForever(request.$id)">
+													<div layout="row" flex>
+														<p style="color: #d50000;" flex>Delete Permanently</p>
+														<md-icon md-menu-align-target class="material-icons" style="margin: auto 3px auto 0; color: #d50000;">delete_forever</md-icon>
+													</div>
+												</md-button>
+											</md-menu-item>
+										</md-menu-content>
+									</md-menu>
+								</a>
+							</li>
+							<li class="report" class="requests" ng-if="$ctrl.area == 'requests-received' && $ctrl.subArea == 'active'">
+								<a href="" style="margin-top: 2px;">
+									<md-menu md-position-mode="target-right target">
+										<i class="ion-navicon-round" style="color: #f57c00; font-size: 1.7em;" ng-click="$mdOpenMenu($event)"></i>
+										<md-menu-content width="4">
+											<md-menu-item>
+												<md-button ng-click="$ctrl.archiveRequest(request.$id)">
+													<div layout="row" flex>
+														<p flex>Archive</p>
+														<md-icon md-menu-align-target class="material-icons" style="margin: auto 3px auto 0;">archive</md-icon>
+													</div>
+												</md-button>
+											</md-menu-item>
+											<md-menu-item>
+												<md-button ng-click="$ctrl.ignoreRequestUntil(request.$id)">
+													<div layout="row" flex>
+														<p flex>Ignore Until</p>
+														<md-icon md-menu-align-target class="material-icons" style="margin: auto 3px auto 0;">hourglass_empty</md-icon>
+													</div>
+												</md-button>
+											</md-menu-item>
+										</md-menu-content>
+									</md-menu>
+								</a>
+							</li>
+							<li class="photo" ng-show="request.attachmentSecureUri">
+								<a href="" ng-click="$ctrl.showImage(request.attachmentSecureUri, $event)" style="margin-top: 2px;">
+									<i class="material-icons" style="color: #fbc02d; font-size: 1.7em;">photo</i><span>photo</span>
+								</a>
+							</li>
+							<li class="photo" ng-show="!request.attachmentSecureUri">
+								<a style="margin-top: 2px;">
+									<i class="material-icons" style="font-size: 1.7em;">photo</i><span>photo</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</md-list-item>
+		</md-list>
+	</md-content>
+</div>
